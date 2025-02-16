@@ -1,32 +1,22 @@
 #include "carousel.h"
 
 const int tubesPerSection = 3;
-const int num_sections = 4;
+const int num_sections = 3;
 const int totalTubes = tubesPerSection * num_sections;
 const int funnelOpen = 35;
 const int funnelClose = 90;
 const int pourDelay = 200;
 const int testOffset = 15;
 
-DirtCarousel::DirtCarousel(StepperMotor stepper, int dirtReleasePin) : 
-  stepper(stepper),
-  dirtReleasePin(dirtReleasePin)
+DirtCarousel::DirtCarousel(StepperMotor stepper) : 
+  stepper(stepper)
   { }
 
 void DirtCarousel::setup() {
-  dirtRelease.attach(dirtReleasePin);
-  goHome();
-  closeFunnel();
+  //goHome();
 }
 
 void DirtCarousel::handleCommand(ScienceCommand command) {
-  switch (command.funnel) {
-    case ServoState_SERVO_STATE_UNDEFINED: break;
-    case ServoState_SERVO_OPEN: 
-      openFunnel(); break; 
-    case ServoState_SERVO_CLOSE: 
-      closeFunnel(); break;
-  }
   switch (command.carousel) {
     case CarouselCommand_CAROUSEL_COMMAND_UNDEFINED: break;
     case CarouselCommand_NEXT_TUBE:
@@ -85,18 +75,8 @@ void DirtCarousel::goToSection(int section) {
   }
 }
 
-void DirtCarousel::openFunnel() {
-  dirtRelease.write(funnelOpen);
-}
-
-void DirtCarousel::closeFunnel() {
-  dirtRelease.write(funnelClose);
-}
-
 void DirtCarousel::fillTube() {
-  openFunnel();
-  delay(pourDelay);
-  closeFunnel();
+  // TODO: Remove this
 }
 
 void DirtCarousel::fillSection() {
