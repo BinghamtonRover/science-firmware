@@ -10,16 +10,14 @@
 class DirtCarousel {
   private: 
     StepperMotor stepper;
-    Servo dirtRelease;
     int tubeIndex = 0;
     int sectionIndex = 0;
-    int dirtReleasePin;
 
     void goToSectionStart();
     void fillTube();
 
   public:
-    DirtCarousel(StepperMotor stepper, int dirtReleasePin);
+    DirtCarousel(StepperMotor stepper);
 
     void setup();
     void goHome();
@@ -34,7 +32,4 @@ class DirtCarousel {
     void prevSection();
     void goToSection(int section);
     void fillSection();
-        
-    void openFunnel();
-    void closeFunnel();
 };

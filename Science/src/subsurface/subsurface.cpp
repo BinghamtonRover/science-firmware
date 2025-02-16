@@ -1,5 +1,4 @@
 #include "subsurface.h"
-#include "../science.pb.h"
 
 const int ServoPIN = 25;
 const int openPOS = 90;
@@ -16,6 +15,6 @@ void SubSurfaceBox::close(){
 }
 
 void SubSurfaceBox::handleCommand(ScienceCommand command){
-    if (command.subsurface == ServoState_SERVO_OPEN) SubSurfaceBox.open();
-    else if (command.subsuface == ServoState_SERVO_CLOSE) SubSurfaceBox.close();
+    if (command.subsurface == ServoState_SERVO_OPEN) open();
+    else if (command.subsurface == ServoState_SERVO_CLOSE) close();
 }

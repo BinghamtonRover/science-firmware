@@ -8,7 +8,7 @@
 
 #define USE_SERIAL_MONITOR false
 
-Version version = {major: 2, minor: 0};
+Version version = {major: 1, minor: 1};
 
 void scienceHandler(const uint8_t* data, int length);
 void sendData();
@@ -35,8 +35,7 @@ void setup() {
 
   Serial.println("Initializing hardware...");
   motors.setup();
-  motors.calibrate();
-  scooper.setup();
+  // motors.calibrate();
   pumps.setup();
   carousel.setup();
 
@@ -68,8 +67,6 @@ void parseSerialCommand() {
 
   // Execute the command
   if (motor == "stop") stopEverything();
-  else if (motor == "dirt-linear") motors.dirtLinear.moveBy(distance); //dirtLinear.moveBy(distance);  
-  else if (motor == "science-linear") motors.scooperArm.moveBy(distance); //scoopArmMotor.moveBy(distance);  
   else if (motor == "dirt-carousel") motors.dirtCarousel.moveBy(distance); //dirtCarousel.moveBy(distance);  
   else if (motor == "pump") {
     pumps.fillTubes();
